@@ -45,7 +45,6 @@ decoders = {
 }
 
 
-# TODO: "asbytes()"? (seems to be the convention with dataclasses).
 def as_bytes(msg):
     return encoders[msg.__class__.__name__](msg)
 

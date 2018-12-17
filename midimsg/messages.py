@@ -92,13 +92,13 @@ class TimeCode(MidiMsg):
 
 @dataclass(frozen=True, eq=True)
 class SongPosition(MidiMsg):
-    beats: Integral = 0 # (0-16383)
+    beats: Integral = 0
     alias = 'spp'
 
 
 @dataclass(frozen=True, eq=True)
 class SongSelect(MidiMsg):
-    number: Integral = 0 # (0-127)
+    number: Integral = 0
     alias = 'ss'
 
 
