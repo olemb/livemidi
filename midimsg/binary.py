@@ -8,10 +8,22 @@ def ch(m):
 encoders = {
     'NoteOff': lambda msg: (0x80|msg.ch-1, msg.note, msg.velocity),
     'NoteOn': lambda msg: (0x90|msg.ch-1, msg.note, msg.velocity),
-
+    'PolyPressure': lambda msg: (0xa0|msg.ch-1, msg.note, msg.value),
     'ControlChange': lambda msg: (0xb0|msg.ch-1, msg.number, msg.value),
+    'ProgramChange': lambda msg: (0xc0|msg.ch-1, msg.number),
+    'ChannelPressure': lambda msg: (0xd0|msg.ch-1, msg.value),
+    'PitchBend' :lambda msg: (0xe0|msg.ch-1, msg.value & 0x7f, msg.value >> 7),
     'SystemExclusive': lambda msg: (0xf0,) + tuple(msg.data) + (0xf7,),
-    'Reset': lambda msg: (0xff,)
+    'TimeCode': lambda msg: (0xf1, msg.type << 4 | msg.value),
+    'SongPosition': lambda msg: (0xf2, msg.value & 0x7f, msg.value >> 7),
+    'SongSelect': lambda msg: (0xf3, msg.number),
+    'TuneRequest': lambda msg: (0xf6,),
+    'MidiClock': lambda msg: (0xf8,),
+    'Start': lambda msg: (0xfa,),
+    'Continue': lambda msg: (0xfb,),
+    'Stop': lambda msg: (0xfc,),
+    'ActiveSensing': lambda msg: (0xfe,),
+    'Reset': lambda msg: (0xff,),
 }
 
 
