@@ -1,10 +1,6 @@
 from .messages import *
 
 
-def ch(m):
-    return (m[0] & 0xf) + 1
-
-
 encoders = {
     'NoteOff': lambda msg: (0x80|msg.ch-1, msg.note, msg.velocity),
     'NoteOn': lambda msg: (0x90|msg.ch-1, msg.note, msg.velocity),
@@ -28,13 +24,13 @@ encoders = {
 
 
 decoders = {
-    0x80: lambda msg: NoteOff(ch(msg), msg[1], msg[2]),
-    0x90: lambda msg: NoteOn(ch(msg), msg[1], msg[2]),
-    0xa0: lambda msg: PolyPressure(ch(msg), msg[1], msg[2]),
-    0xb0: lambda msg: ControlChange(ch(msg), msg[1], msg[2]),
-    0xc0: lambda msg: ProgramChange(ch(msg), msg[1]),
-    0xd0: lambda msg: ChannelPressure(ch(msg), msg[1]),
-    0xe0: lambda msg: PitchBend(ch(msg), (msg[1] | msg[2] << 7)),
+    0x80: lambda msg: NoteOff((msg[0]&15)+1, msg[1], msg[2]),
+    0x90: lambda msg: NoteOn((msg[0]&15)+1, msg[1], msg[2]),
+    0xa0: lambda msg: PolyPressure((msg[0]&15)+1, msg[1], msg[2]),
+    0xb0: lambda msg: ControlChange((msg[0]&15)+1, msg[1], msg[2]),
+    0xc0: lambda msg: ProgramChange((msg[0]&15)+1, msg[1]),
+    0xd0: lambda msg: ChannelPressure((msg[0]&15)+1, msg[1]),
+    0xe0: lambda msg: PitchBend((msg[0]&15)+1, (msg[1] | msg[2] << 7)),
     0xf0: lambda msg: SystemExclusive(bytes(msg[1:-1])),
     0xf1: lambda msg: TimeCode(msg[1] >> 4, msg[1] & 0xf),
     0xf2: lambda msg: SongPosition((msg[1] | msg[2] << 7)),
