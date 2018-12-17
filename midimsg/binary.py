@@ -28,24 +28,24 @@ encoders = {
 
 
 decoders = {
-    0x80: lambda Q: NoteOff(ch(B), Q[1], Q[2]),
-    0x90: lambda Q: NoteOn(ch(B), Q[1], Q[2]),
-    0xa0: lambda Q: PolyPressure(ch(B), Q[1], Q[2]),
-    0xb0: lambda Q: ControlChange(ch(B), Q[1], Q[2]),
-    0xc0: lambda Q: ProgramChange(ch(B), Q[1]),
-    0xd0: lambda Q: ChannelPressure(ch(B), Q[1]),
-    0xe0: lambda Q: PitchBend(ch(B), (Q[1] | Q[2] << 7)),  # ?
-    0xf0: lambda Q: SystemExclusive(bytes(Q)),
-    0xf1: lambda Q: TimeCode(Q[1] >> 4, Q[1] & 15),  # ?
-    0xf2: lambda Q: SongPosition((Q[1] | Q[2] << 7)),  # ?
-    0xf3: lambda Q: SongSelect(Q[1]),
-    0xf6: lambda Q: TuneRequest(),
-    0xf8: lambda Q: MidiClock(),
-    0xfa: lambda Q: Start(),
-    0xfb: lambda Q: Continue(),
-    0xfc: lambda Q: Stop(),
-    0xfe: lambda Q: ActiveSensing(),
-    0xff: lambda Q: Reset(),
+    0x80: lambda m: NoteOff(ch(m), m[1], m[2]),
+    0x90: lambda m: NoteOn(ch(m), m[1], m[2]),
+    0xa0: lambda m: PolyPressure(ch(m), m[1], m[2]),
+    0xb0: lambda m: ControlChange(ch(m), m[1], m[2]),
+    0xc0: lambda m: ProgramChange(ch(m), m[1]),
+    0xd0: lambda m: ChannelPressure(ch(m), m[1]),
+    0xe0: lambda m: PitchBend(ch(m), (m[1] | m[2] << 7)),
+    0xf0: lambda m: SystemExclusive(bytes(m)),
+    0xf1: lambda m: TimeCode(m[1] >> 4, m[1] & 0xf),
+    0xf2: lambda m: SongPosition((m[1] | m[2] << 7)),
+    0xf3: lambda m: SongSelect(m[1]),
+    0xf6: lambda m: TuneRequest(),
+    0xf8: lambda m: MidiClock(),
+    0xfa: lambda m: Start(),
+    0xfb: lambda m: Continue(),
+    0xfc: lambda m: Stop(),
+    0xfe: lambda m: ActiveSensing(),
+    0xff: lambda m: Reset(),
 }
 
 
