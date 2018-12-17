@@ -35,7 +35,7 @@ decoders = {
     0xc0: lambda m: ProgramChange(ch(m), m[1]),
     0xd0: lambda m: ChannelPressure(ch(m), m[1]),
     0xe0: lambda m: PitchBend(ch(m), (m[1] | m[2] << 7)),
-    0xf0: lambda m: SystemExclusive(bytes(m)),
+    0xf0: lambda m: SystemExclusive(bytes(m[1:-1])),
     0xf1: lambda m: TimeCode(m[1] >> 4, m[1] & 0xf),
     0xf2: lambda m: SongPosition((m[1] | m[2] << 7)),
     0xf3: lambda m: SongSelect(m[1]),
