@@ -116,9 +116,5 @@ def open_output(name):
     return Output(name)
 
 
-def create_output():
+def create_output(name):
     return Output(name, virt=True)
-
-
-
-
