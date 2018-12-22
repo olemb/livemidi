@@ -15,9 +15,10 @@ meep.MidiClock(        meep.ProgramChange(    meep.Stop(             meep.bytes 
 * 100% pure functional code (no side effects)
 * channels are 1-16.
 * attribute types and values are not checked (at least for now).
-* integrates nicely with Geert Bevin's SendMIDI and ReceiveMIDI
-  tools. (Also uses same naming conventions.)
-* basic input and output ports using SendMIDI/ReceiveMIDI or python-rtmidi.
+* integrates nicely with Geert Bevin's
+  https://github.com/gbevin/SendMIDI and
+  https://github.com/gbevin/ReceiveMIDI tools. (Also uses same naming
+  conventions.)
 
 This is a prerelease. API details may change.
 
