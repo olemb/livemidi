@@ -5,17 +5,26 @@ import rtmidi
 from .bytes import as_bytes, from_bytes
 
 
-def _find_port(names, name):
+def _find_port(rt, name):
+    names = rt.get_ports()
     try:
         return names.index(name)
     except ValueError:
         pass
 
-    for index, n in enumerate(names):
-        if name.lower() in n.lower():
+    for index, fullname in enumerate(names):
+        if name.lower() in fullname.lower():
             return index
     else:
         raise ValueError(f'unknown device {name!r}')
+
+
+def _open_port(rt, name, virtual=False):
+    index = _find_port(rt, name)
+    if virtual:
+        rt.open_virtual_port(index)
+    else:
+        rt.open_port(index)
 
 
 def list_inputs():
@@ -45,21 +54,13 @@ def create_output(name):
 class Input:
     def __init__(self, name, virtual=False):
         self.rt = rtmidi.MidiIn()
-        index = _find_port(self.rt.get_ports(), name)
-        if virtual:
-            self.rt.open_virtual_port(index)
-        else:
-            self.rt.open_port(index)
+        _open_port(self.rt, name, virtual=virtual)
 
 
 class Output:
     def __init__(self, name, virtual=False):
         self.rt = rtmidi.MidiOut()
-        index = _find_port(self.rt.get_ports(), name)
-        if virtual:
-            self.rt.open_virtual_port(index)
-        else:
-            self.rt.open_port(index)
+        _open_port(self.rt, name, virtual=virtual)
 
     def send(self, msg):
         self.rt.send_message(as_bytes(msg))
