@@ -118,3 +118,8 @@ def open_output(name):
 
 def create_output(name):
     return Output(name, virt=True)
+
+
+__all__ = ['list_inputs', 'list_outputs',
+           'open_input', 'create_input',
+           'open_output', 'create_output']
