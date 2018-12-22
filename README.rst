@@ -18,4 +18,7 @@ meep.MidiClock(        meep.ProgramChange(    meep.Stop(             meep.bytes 
 * integrates nicely with Geert Bevin's SendMIDI and ReceiveMIDI
   tools. (Also uses same naming conventions.)
 
+This is a prerelease. API details may change.
+
+
 Author: Ole Martin Bjorndalen
