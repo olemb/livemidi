@@ -14,14 +14,8 @@ class MidiMsg:
         else:
             return self.number == number
 
-    def is_sustain_pedal(self):
-        return self.is_cc(64)
-
     def is_syx(self):
         return isinstance(self, SystemExclusive)
-
-    def is_pitch_bend(self):
-        return isinstance(self, PitchBend)
 
 
 @dataclass(frozen=True, eq=True)
