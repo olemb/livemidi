@@ -56,28 +56,27 @@ def from_line(line):
 
     
 def as_line(msg):
-    if msg.type == 'SystemExclusive':
+    if msg.is_syx():
         data = ' '.join(f'{byte:02x}' for byte in msg.data)
         return f'system-exclusive hex {data} dec'
     else:
-        return templates[msg.type].format(**vars(msg))
+        return templates[msg.__class__.__name__].format(**vars(msg))
+
+
+def list_inputs():
+    return [n.rstrip() for n in os.popen('receivemidi list').readlines()]
+
+
+def list_outputs():
+    return [n.rstrip() for n in os.popen('sendmidi list').readlines()]
 
 
 class Input:
-    @classmethod
-    def names(cls):
-        return [n.rstrip() for n in os.popen('receivemidi list').readlines()]
-
-    @classmethod
-    def dev(self, name):
-        return Input('dev', name)
-
-    @classmethod
-    def virt(self, name):
-        return Input('virt', name)
-    
-    def __init__(self, devtype, name):
-        assert devtype in {'dev', 'virt'}
+    def __init__(self, name, virt=False):
+        if virt:
+            devtype = 'virt'
+        else:
+            devtype = 'dev'
 
         self._proc = subprocess.Popen(['receivemidi', devtype, name, 'nn'],
                                       stdout=subprocess.PIPE)
@@ -89,20 +88,12 @@ class Input:
 
 
 class Output:
-    @classmethod
-    def names(cls):
-        return [n.rstrip() for n in os.popen('sendmidi list').readlines()]
-        
-    @classmethod
-    def dev(self, name):
-        return Output(name, 'dev')
-
-    @classmethod
-    def virt(self, name):
-        return Output(name, 'virt')
-    
-    def __init__(self, name, devtype):
-        assert devtype in {'dev', 'virt'}
+    def __init__(self, name, virt=False):
+        if virt:
+            devtype = 'virt'
+        else:
+            devtype = 'dev'
+        print(devtype)
 
         self._proc = subprocess.Popen(['sendmidi', devtype, name, '--'],
                                       stdin=subprocess.PIPE)
@@ -111,3 +102,23 @@ class Output:
         line = as_line(msg) + '\n'
         self._proc.stdin.write(line.encode('ascii'))
         self._proc.stdin.flush()
+
+
+def open_input(name):
+    return Input(name)
+
+
+def create_input(name):
+    return Input(name, virt=True)
+
+
+def open_output(name):
+    return Output(name)
+
+
+def create_output():
+    return Output(name, virt=True)
+
+
+
+
