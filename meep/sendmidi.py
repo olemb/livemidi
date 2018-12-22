@@ -71,6 +71,22 @@ def list_outputs():
     return [n.rstrip() for n in os.popen('sendmidi list').readlines()]
 
 
+def open_input(name):
+    return Input(name)
+
+
+def open_output(name):
+    return Output(name)
+
+
+def create_input(name):
+    return Input(name, virt=True)
+
+
+def create_output(name):
+    return Output(name, virt=True)
+
+
 class Input:
     def __init__(self, name, virt=False):
         if virt:
@@ -104,22 +120,6 @@ class Output:
         self._proc.stdin.flush()
 
 
-def open_input(name):
-    return Input(name)
-
-
-def create_input(name):
-    return Input(name, virt=True)
-
-
-def open_output(name):
-    return Output(name)
-
-
-def create_output(name):
-    return Output(name, virt=True)
-
-
 __all__ = ['list_inputs', 'list_outputs',
-           'open_input', 'create_input',
-           'open_output', 'create_output']
+           'open_input', 'open_output',
+           'create_input', 'create_output']
