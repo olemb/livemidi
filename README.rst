@@ -1,5 +1,5 @@
-midimsg - MIDI messages for Python
-==================================
+meep - MIDI messages for Python
+===============================
 
 >>> import meep
 >>> meep.
