@@ -52,14 +52,12 @@ def create_output(name):
 
 class Input:
     def __init__(self, name, virtual=False):
-        self.name = name
         self.rt = rtmidi.MidiIn()
         _open_port(self.rt, name, virtual=virtual)
 
 
 class Output:
     def __init__(self, name, virtual=False):
-        self.name = name
         self.rt = rtmidi.MidiOut()
         _open_port(self.rt, name, virtual=virtual)
 

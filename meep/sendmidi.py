@@ -89,8 +89,6 @@ def create_output(name):
 
 class Input:
     def __init__(self, name, virtual=False):
-        self.name = name
-
         if virtual:
             devtype = 'virt'
         else:
@@ -108,8 +106,6 @@ class Input:
 
 class Output:
     def __init__(self, name, virtual=False):
-        self.name = name
-
         if virtual:
             devtype = 'virt'
         else:
