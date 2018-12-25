@@ -94,8 +94,8 @@ class Input:
         else:
             devtype = 'dev'
 
-        self.args = ['receivemidi', devtype, name, 'nn']
-        self._proc = subprocess.Popen(self.args,
+        args = ['receivemidi', devtype, name, 'nn']
+        self._proc = subprocess.Popen(args,
                                       stdout=subprocess.PIPE)
 
     def __iter__(self):
@@ -111,8 +111,8 @@ class Output:
         else:
             devtype = 'dev'
 
-        self.args = ['sendmidi', devtype, name, '--']
-        self._proc = subprocess.Popen(self.args,
+        args = ['sendmidi', devtype, name, '--']
+        self._proc = subprocess.Popen(args,
                                       stdin=subprocess.PIPE)
 
     def send(self, msg):
