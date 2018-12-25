@@ -80,21 +80,24 @@ def open_output(name):
 
 
 def create_input(name):
-    return Input(name, virt=True)
+    return Input(name, virtual=True)
 
 
 def create_output(name):
-    return Output(name, virt=True)
+    return Output(name, virtual=True)
 
 
 class Input:
-    def __init__(self, name, virt=False):
-        if virt:
+    def __init__(self, name, virtual=False):
+        self.name = name
+
+        if virtual:
             devtype = 'virt'
         else:
             devtype = 'dev'
 
-        self._proc = subprocess.Popen(['receivemidi', devtype, name, 'nn'],
+        self.args = ['receivemidi', devtype, name, 'nn']
+        self._proc = subprocess.Popen(self.args,
                                       stdout=subprocess.PIPE)
 
     def __iter__(self):
@@ -104,14 +107,16 @@ class Input:
 
 
 class Output:
-    def __init__(self, name, virt=False):
-        if virt:
+    def __init__(self, name, virtual=False):
+        self.name = name
+
+        if virtual:
             devtype = 'virt'
         else:
             devtype = 'dev'
-        print(devtype)
 
-        self._proc = subprocess.Popen(['sendmidi', devtype, name, '--'],
+        self.args = ['sendmidi', devtype, name, '--']
+        self._proc = subprocess.Popen(self.args,
                                       stdin=subprocess.PIPE)
 
     def send(self, msg):

@@ -20,11 +20,10 @@ def _find_port(rt, name):
 
 
 def _open_port(rt, name, virtual=False):
-    index = _find_port(rt, name)
     if virtual:
-        rt.open_virtual_port(index)
+        rt.open_virtual_port(name)
     else:
-        rt.open_port(index)
+        rt.open_port(_find_port(rt, name))
 
 
 def list_inputs():
@@ -53,12 +52,14 @@ def create_output(name):
 
 class Input:
     def __init__(self, name, virtual=False):
+        self.name = name
         self.rt = rtmidi.MidiIn()
         _open_port(self.rt, name, virtual=virtual)
 
 
 class Output:
     def __init__(self, name, virtual=False):
+        self.name = name
         self.rt = rtmidi.MidiOut()
         _open_port(self.rt, name, virtual=virtual)
 
