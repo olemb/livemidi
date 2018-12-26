@@ -11,7 +11,7 @@ encoders = {
     'PitchBend' :lambda msg: (0xe0|msg.ch-1, msg.value & 0x7f, msg.value >> 7),
     'SystemExclusive': lambda msg: (0xf0,) + tuple(msg.data) + (0xf7,),
     'TimeCode': lambda msg: (0xf1, msg.type << 4 | msg.value),
-    'SongPosition': lambda msg: (0xf2, msg.value & 0x7f, msg.value >> 7),
+    'SongPosition': lambda msg: (0xf2, msg.beats & 0x7f, msg.beats >> 7),
     'SongSelect': lambda msg: (0xf3, msg.number),
     'TuneRequest': lambda msg: (0xf6,),
     'MidiClock': lambda msg: (0xf8,),
