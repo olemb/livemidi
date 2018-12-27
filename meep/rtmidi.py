@@ -19,13 +19,6 @@ def _find_port(rt, name):
         raise ValueError(f'unknown device {name!r}')
 
 
-def _open_port(rt, name, virtual=False):
-    if virtual:
-        rt.open_virtual_port(name)
-    else:
-        rt.open_port(_find_port(rt, name))
-
-
 def list_inputs():
     return rtmidi.MidiIn().get_ports()
 
@@ -43,23 +36,29 @@ def open_output(name):
 
 
 def create_input(name):
-    return Input(name, virtual=True)
+    return Input(name, create=True)
 
 
 def create_output(name):
-    return Output(name, virtual=True)
+    return Output(name, create=True)
 
 
 class Input:
-    def __init__(self, name, virtual=False):
+    def __init__(self, name, create=False):
         self.rt = rtmidi.MidiIn()
-        _open_port(self.rt, name, virtual=virtual)
+        if create:
+            rt.open_virtual_port(name)
+        else:
+            rt.open_port(_find_port(rt, name))        
 
 
 class Output:
-    def __init__(self, name, virtual=False):
+    def __init__(self, name, create=False):
         self.rt = rtmidi.MidiOut()
-        _open_port(self.rt, name, virtual=virtual)
+        if create:
+            rt.open_virtual_port(name)
+        else:
+            rt.open_port(_find_port(rt, name))        
 
     def send(self, msg):
         self.rt.send_message(as_bytes(msg))

@@ -80,16 +80,16 @@ def open_output(name):
 
 
 def create_input(name):
-    return Input(name, virtual=True)
+    return Input(name, create=True)
 
 
 def create_output(name):
-    return Output(name, virtual=True)
+    return Output(name, create=True)
 
 
 class Input:
-    def __init__(self, name, virtual=False):
-        if virtual:
+    def __init__(self, name, create=False):
+        if create:
             devtype = 'virt'
         else:
             devtype = 'dev'
@@ -105,8 +105,8 @@ class Input:
 
 
 class Output:
-    def __init__(self, name, virtual=False):
-        if virtual:
+    def __init__(self, name, create=False):
+        if create:
             devtype = 'virt'
         else:
             devtype = 'dev'
