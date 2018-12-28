@@ -47,18 +47,18 @@ class Input:
     def __init__(self, name, create=False):
         self.rt = rtmidi.MidiIn()
         if create:
-            rt.open_virtual_port(name)
+            self.rt.open_virtual_port(name)
         else:
-            rt.open_port(_find_port(rt, name))        
+            self.rt.open_port(_find_port(rt, name))
 
 
 class Output:
     def __init__(self, name, create=False):
         self.rt = rtmidi.MidiOut()
         if create:
-            rt.open_virtual_port(name)
+            self.rt.open_virtual_port(name)
         else:
-            rt.open_port(_find_port(rt, name))        
+            self.rt.open_port(_find_port(rt, name))
 
     def send(self, msg):
         self.rt.send_message(as_bytes(msg))
