@@ -3,6 +3,10 @@ from dataclasses import dataclass, replace
 
 
 class MidiMsg:
+    @property
+    def type(self):
+        return self.__class__.__name__
+
     def __call__(self, *args, **kwargs):
         return replace(self, *args, **kwargs)
 
