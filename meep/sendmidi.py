@@ -1,7 +1,7 @@
 import os
 import re
 import subprocess
-from . import messages
+from .messages import get_class
 
 
 def dashname(camelname):
@@ -34,7 +34,8 @@ templates = {
     'Reset': 'reset',
 }
 
-class_lookup = {dashname(name): getattr(messages, name) for name in templates}
+_dashnames = [dashname(name) for name in templates]
+
 
 def _parse_syx_line(line):
     # Example: "system-exclusive hex 01 02 03 dec"
@@ -47,8 +48,9 @@ def from_line(line):
     if 'system-exclusive' in line:
         return _parse_syx_line(line)
     else:
-        for name, cls in class_lookup.items():
+        for name in _dashnames:
             if name in line:
+                cls = get_class(camelname(name))
                 args = [int(arg) for arg in re.findall('(\d+)', line)]
                 return cls(*args)
         else:
