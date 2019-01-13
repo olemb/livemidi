@@ -1,6 +1,8 @@
 meep - MIDI messages for Python
 ===============================
 
+Experimental MIDI library using Python 3.7 dataclasses.
+
 >>> import meep
 >>> meep.
 meep.ActiveSensing(    meep.NoteOff(          meep.Reset(            meep.SystemExclusive(  meep.create_input(     meep.messages
