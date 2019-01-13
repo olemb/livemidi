@@ -21,7 +21,7 @@ meep.MidiClock(        meep.ProgramChange(    meep.Stop(             meep.bytes 
   https://github.com/gbevin/ReceiveMIDI tools. (Also uses same naming
   conventions.)
 
-This is a prerelease. API details may change.
+This is very experimental code. API details may change.
 
 
 Author: Ole Martin Bjorndalen
