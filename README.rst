@@ -5,36 +5,36 @@ Experimental MIDI library using Python 3.7 dataclasses.
 
 Current API (may change in the future)::
 
-    NoteOff(note=0, velocity=64, ch=1)
-    NoteOn(note=0, velocity=64, ch=1)
-    PolyPressure(note=0, value=0, ch=1)
-    ControlChange(number=0, value=0, ch=1)
-    ProgramChange(number=0, ch=1)
-    ChannelPressure(value=0, ch=1)
-    PitchBend(value=0, ch=1)
-    SystemExclusive(data=b'')
-    TimeCode(type=0, value=0)
-    SongPosition(beats=0)
-    SongSelect(number=0)
-    TuneRequest()
-    MidiClock()
-    Start()
-    Continue()
-    Stop()
-    ActiveSensing()
-    Reset()
+    meep.NoteOff(note=0, velocity=64, ch=1)
+    meep.NoteOn(note=0, velocity=64, ch=1)
+    meep.PolyPressure(note=0, value=0, ch=1)
+    meep.ControlChange(number=0, value=0, ch=1)
+    meep.ProgramChange(number=0, ch=1)
+    meep.ChannelPressure(value=0, ch=1)
+    meep.PitchBend(value=0, ch=1)
+    meep.SystemExclusive(data=b'')
+    meep.TimeCode(type=0, value=0)
+    meep.SongPosition(beats=0)
+    meep.SongSelect(number=0)
+    meep.TuneRequest()
+    meep.MidiClock()
+    meep.Start()
+    meep.Continue()
+    meep.Stop()
+    meep.ActiveSensing()
+    meep.Reset()
 
-    new(name, *args, **kwargs)  # create new message from name or alias
+    meep.new(name, *args, **kwargs)  # create new message from name or alias
 
-    as_bytes(msg)               # encode message as bytes
-    from_bytes(midi_bytes)      # decode bytes and return message
+    meep.as_bytes(msg)               # encode message as bytes
+    meep.from_bytes(midi_bytes)      # decode bytes and return message
 
-    list_inputs()
-    open_input(name)
-    create_input(name)
-    list_outputs()
-    open_output(name)
-    create_output(name)
+    meep.list_inputs()
+    meep.open_input(name)
+    meep.create_input(name)
+    meep.list_outputs()
+    meep.open_output(name)
+    meep.create_output(name)
 
 * requires Python 3.7.1 or later.
 * messages are implemented with Python data classes.
