@@ -24,54 +24,54 @@ class MidiMsg:
 
 @dataclass(frozen=True, eq=True)
 class NoteOff(MidiMsg):
-    ch: Integral = 1
     note: Integral = 0
     velocity: Integral = 64
+    ch: Integral = 1
     alias = 'off'
 
 
 @dataclass(frozen=True, eq=True)
 class NoteOn(MidiMsg):
-    ch: Integral = 1
     note: Integral = 0
     velocity: Integral = 64
+    ch: Integral = 1
     alias = 'on'
 
 
 @dataclass(frozen=True, eq=True)
 class PolyPressure(MidiMsg):
-    ch: Integral = 1
     note: Integral = 0
     value: Integral = 0
+    ch: Integral = 1
     alias = 'pp'
 
 
 @dataclass(frozen=True, eq=True)
 class ControlChange(MidiMsg):
-    ch: Integral = 1
     number: Integral = 0
     value: Integral = 0
+    ch: Integral = 1
     alias = 'cc'
 
 
 @dataclass(frozen=True, eq=True)
 class ProgramChange(MidiMsg):
-    ch: Integral = 1
     number: Integral = 0
+    ch: Integral = 1
     alias = 'pc'
 
 
 @dataclass(frozen=True, eq=True)
 class ChannelPressure(MidiMsg):
-    ch: Integral = 1
     value: Integral = 0
+    ch: Integral = 1
     alias = 'cp'
 
 
 @dataclass(frozen=True, eq=True)
 class PitchBend(MidiMsg):
-    ch: Integral = 1
     value: Integral = 0
+    ch: Integral = 1
     alias = 'pb'
 
 
