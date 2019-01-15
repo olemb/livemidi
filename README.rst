@@ -9,9 +9,9 @@ Experimental MIDI library using Python 3.7 dataclasses.
     >>> from meep import NoteOn, NoteOff, ControlChange
     >>> meep.list_outputs()
     ['Midi Through Port-0', 'reface CS MIDI 1']
-    >>> cs = meep.open_output('reface')  # Part of the name is enough.
-    >>> cs.send(NoteOn(60))              # Positional or keyword arguments.
-    >>> cs.send(NoteOff(note=60, ch=1))  # Channels are 1-16.
+    >>> out = meep.open_output('reface')  # Part of the name is enough.
+    >>> out.send(NoteOn(60))              # Positional or keyword arguments.
+    >>> out.send(NoteOff(note=60, ch=1))  # Channels are 1-16.
 
 .. code-block:: python
 
