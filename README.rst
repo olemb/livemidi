@@ -39,6 +39,14 @@ Experimental MIDI library using Python 3.7 dataclasses.
     >>> meep.from_bytes((176, 64, 127))
     ControlChange(number=64, value=127, ch=1)
 
+.. code-block:: python
+
+    >>> import meep.rtmidi
+    >>> meep.rtmidi.list_outputs()
+    ['Midi Through:Midi Through Port-0 14:0',
+     'reface CS:reface CS MIDI 1 20:0']
+    >>> out = meep.rtmidi.open_output('reface cs')
+
 Current API (may change in the future):
 
 .. code-block:: python
@@ -86,5 +94,14 @@ Current API (may change in the future):
 
 This is very experimental code. API details may change.
 
+
+Open Questions
+--------------
+
+* Where and how should type and value checking be done?
+* What methods should the port classes have? What's a good minimal API that
+  can be used equally well with async, threads and multiprocessing?
+* What's a good API for copying messages? ``replace(msg, note=20)``?
+``msg(note=20)``?  ``msg.copy(note=20)``?
 
 Author: Ole Martin Bjorndalen
