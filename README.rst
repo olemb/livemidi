@@ -15,13 +15,22 @@ Experimental MIDI library using Python 3.7 dataclasses.
 
 .. code-block:: python
 
-    >>> c = ControlChange(64, 127)  # Sustain pedal down.
+    >>> c = ControlChange(number=64, value=127)  # Sustain pedal down.
+    >>> c.value
+    127
     >>> c.is_cc()
     True
     >>> c.is_cc(64)
     True
     >>> c.is_syx()
     False
+
+.. code-block:: python
+
+    >>> meep.new('ControlChange', 64, 127, 2)
+    ControlChange(number=64, value=127, ch=2)
+    >>> meep.new('cc', 64, 127, 2)
+    ControlChange(number=64, value=127, ch=2)
 
 .. code-block:: python
 
