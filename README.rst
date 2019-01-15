@@ -3,6 +3,31 @@ meep - MIDI messages for Python
 
 Experimental MIDI library using Python 3.7 dataclasses.
 
+Example::
+
+    >>> import meep
+    >>> from meep import NoteOn, NoteOff, ControlChange
+    >>> meep.list_outputs()
+    ['Midi Through Port-0', 'reface CS MIDI 1']
+    >>> cs = meep.open_output('reface')  # Looks for substring.
+    >>> cs.send(NoteOn(60))              # Positional or keyword arguments.
+    >>> cs.send(NoteOff(note=60, ch=1))  # Channel is last argument.
+
+    # Utility methods.
+    >>> c = ControlChange(64, 127)  # Sustain pedal down.
+    >>> c.is_cc()
+    True
+    >>> c.is_cc(64)
+    True
+    >>> c.is_syx()
+    False
+
+    # Conversion to and from bytes.
+    >>> meep.as_bytes(c)
+    (176, 64, 127)
+    >>> meep.from_bytes((176, 64, 127))
+    ControlChange(number=64, value=127, ch=1)
+
 Current API (may change in the future)::
 
     meep.NoteOff(note=0, velocity=64, ch=1)
