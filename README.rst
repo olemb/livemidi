@@ -3,6 +3,10 @@ meep - MIDI messages for Python
 
 Experimental MIDI library using Python 3.7 dataclasses.
 
+.. note:: Meep is written primarily for my own use but if there's
+interest it could be used as a starting point for a real
+library. There may also be ideas here that could be reused in Mido.
+
 .. code-block:: python
 
     >>> import meep
@@ -99,9 +103,17 @@ Open Questions
 --------------
 
 * Where and how should type and value checking be done?
+
 * What methods should the port classes have? What's a good minimal API that
   can be used equally well with async, threads and multiprocessing?
+
 * What's a good API for copying messages? ``replace(msg, note=20)``?
 ``msg(note=20)``?  ``msg.copy(note=20)``?
+
+* The ``__hash__()`` method created by ``dataclasses`` ignores the
+  message type, which means for example ``hash(NoteOn(40)) ==
+  hash(NoteOff(40))`` and ``hash(Start())`` == ``hash(Stop())``. This
+  could be a problem.
+
 
 Author: Ole Martin Bjorndalen
