@@ -3,7 +3,7 @@ meep - MIDI messages for Python
 
 Experimental MIDI library using Python 3.7 dataclasses.
 
-Example::
+.. code-block:: python
 
     >>> import meep
     >>> from meep import NoteOn, NoteOff, ControlChange
@@ -28,7 +28,9 @@ Example::
     >>> meep.from_bytes((176, 64, 127))
     ControlChange(number=64, value=127, ch=1)
 
-Current API (may change in the future)::
+Current API (may change in the future):
+
+.. code-block:: python
 
     meep.NoteOff(note=0, velocity=64, ch=1)
     meep.NoteOn(note=0, velocity=64, ch=1)
