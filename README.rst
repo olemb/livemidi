@@ -3,7 +3,7 @@ meep - MIDI messages for Python
 
 Experimental MIDI library using Python 3.7 dataclasses.
 
-.. note:: Meep is written primarily for my own use but if there's
+*Note:* Meep is written primarily for my own use but if there's
 interest it could be used as a starting point for a real
 library. There may also be ideas here that could be reused in Mido.
 
