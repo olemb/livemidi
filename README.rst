@@ -108,7 +108,7 @@ Open Questions
   can be used equally well with async, threads and multiprocessing?
 
 * What's a good API for copying messages? ``replace(msg, note=20)``?
-``msg(note=20)``?  ``msg.copy(note=20)``?
+  ``msg(note=20)``?  ``msg.copy(note=20)``?
 
 * The ``__hash__()`` method created by ``dataclasses`` ignores the
   message type, which means for example ``hash(NoteOn(40)) ==
