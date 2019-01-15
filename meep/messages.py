@@ -30,9 +30,10 @@ class MidiMsg:
                 if not 1 <= value <= 16:
                     raise ValueError('ch must be in range 1..16')
             elif self.alias in ['pb', 'spp']:
-                if not 0 <= value <= (2 ** 14 - 1):
-                    maxval = (2 ** 14 - 1)
-                    raise ValueError(f'{name} must be in range 0..{maxval}')
+                # PitchBend and SongPosition have the same value range.
+                if not 0 <= value <= PitchBend.max_value:
+                    raise ValueError(
+                        f'{name} must be in range 0..{PitchBend.max_value}')
             else:
                 if not 0 <= value <= 127:
                     raise ValueError(f'{name} must be in range 0..127')
@@ -88,6 +89,7 @@ class ChannelPressure(MidiMsg):
 class PitchBend(MidiMsg):
     value: Integral = 0
     ch: Integral = 1
+    max_value = 16383
     alias = 'pb'
 
 
@@ -113,6 +115,7 @@ class TimeCode(MidiMsg):
 @dataclass(frozen=True, eq=True)
 class SongPosition(MidiMsg):
     beats: Integral = 0
+    max_beats = 16383
     alias = 'spp'
 
 
