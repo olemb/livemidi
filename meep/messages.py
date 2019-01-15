@@ -21,6 +21,22 @@ class MidiMsg:
     def is_syx(self):
         return isinstance(self, SystemExclusive)
 
+    def __post_init__(self):
+        # Type and value checks.
+        for name, value in vars(self).items():
+            if not isinstance(value, Integral):
+                raise TypeError(f'{name} must be integer')
+            elif name == 'ch':
+                if not 1 <= value <= 16:
+                    raise ValueError('ch must be in range 1..16')
+            elif self.alias in ['pb', 'spp']:
+                if not 0 <= value <= (2 ** 14 - 1):
+                    maxval = (2 ** 14 - 1)
+                    raise ValueError(f'{name} must be in range 0..{maxval}')
+            else:
+                if not 0 <= value <= 127:
+                    raise ValueError(f'{name} must be in range 0..127')
+
 
 @dataclass(frozen=True, eq=True)
 class NoteOff(MidiMsg):
@@ -79,6 +95,12 @@ class PitchBend(MidiMsg):
 class SystemExclusive(MidiMsg):
     data: bytes = b''
     alias = 'syx'
+
+    def __post_init__(self):
+        vars(self)['data'] = bytes(self.data)
+        for byte in self.data:
+            if not 0 <= byte <= 127:
+                raise ValueError('syx data byte must be in range 0..127')
 
 
 @dataclass(frozen=True, eq=True)
