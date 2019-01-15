@@ -13,7 +13,8 @@ Experimental MIDI library using Python 3.7 dataclasses.
     >>> cs.send(NoteOn(60))              # Positional or keyword arguments.
     >>> cs.send(NoteOff(note=60, ch=1))  # Channel is last argument.
 
-    # Utility methods.
+.. code-block:: python
+
     >>> c = ControlChange(64, 127)  # Sustain pedal down.
     >>> c.is_cc()
     True
@@ -22,7 +23,8 @@ Experimental MIDI library using Python 3.7 dataclasses.
     >>> c.is_syx()
     False
 
-    # Conversion to and from bytes.
+.. code-block:: python
+
     >>> meep.as_bytes(c)
     (176, 64, 127)
     >>> meep.from_bytes((176, 64, 127))
