@@ -52,6 +52,9 @@ def from_line(line):
             if name in line:
                 cls = get_class(camelname(name))
                 args = [int(arg) for arg in re.findall('(\d+)', line)]
+                if 'channel' in line:
+                    # Move channel to last position.
+                    args = args[1:] + [args[0]]
                 return cls(*args)
         else:
             raise ValueError(f'unknown message: {line.strip()!r}')
