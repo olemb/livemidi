@@ -49,7 +49,7 @@ class Input:
         if create:
             self.rt.open_virtual_port(name)
         else:
-            self.rt.open_port(_find_port(rt, name))
+            self.rt.open_port(_find_port(self.rt, name))
 
 
 class Output:
@@ -58,7 +58,7 @@ class Output:
         if create:
             self.rt.open_virtual_port(name)
         else:
-            self.rt.open_port(_find_port(rt, name))
+            self.rt.open_port(_find_port(self.rt, name))
 
     def send(self, msg):
         self.rt.send_message(as_bytes(msg))
