@@ -30,6 +30,15 @@ class MidiMsg:
                 if not 0 <= value <= PitchBend.max:
                     raise ValueError(
                         f'{name} must be in range 0..{PitchBend.max}')
+            elif self.alias == 'tc':
+                if name == 'type':
+                    if not 0 <= value <= 7:
+                        raise ValueError(
+                            'TimeCode type must be in range 0..7')
+                elif name == 'value':
+                    if not 0 <= value <= 15:
+                        raise ValueError(
+                            'TimeCode value must be in range 0..15')
             else:
                 if not 0 <= value <= 127:
                     raise ValueError(f'{name} must be in range 0..127')
