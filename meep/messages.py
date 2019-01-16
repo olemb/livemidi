@@ -87,7 +87,7 @@ class ChannelPressure(MidiMsg):
 
 @dataclass(frozen=True, eq=True)
 class PitchBend(MidiMsg):
-    value: Integral = 0
+    value: Integral = 8192
     ch: Integral = 1
     mid = 8192
     max = 16383
