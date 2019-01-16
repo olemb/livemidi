@@ -89,6 +89,7 @@ class ChannelPressure(MidiMsg):
 class PitchBend(MidiMsg):
     value: Integral = 0
     ch: Integral = 1
+    mid = 8192
     max = 16383
     alias = 'pb'
 
