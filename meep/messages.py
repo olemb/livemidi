@@ -2,6 +2,13 @@ from numbers import Integral
 from dataclasses import dataclass, replace
 
 
+max_values = {
+    ('PitchBend', 'value'): 16383,
+    ('SongPosition', 'beats'): 16383,
+    ('TimeCode', 'type'): 7,
+    ('TimeCode', 'value'): 15,
+}
+
 class MidiMsg:
     def __call__(self, *args, **kwargs):
         return replace(self, *args, **kwargs)
@@ -25,23 +32,10 @@ class MidiMsg:
             elif name == 'ch':
                 if not 1 <= value <= 16:
                     raise ValueError('ch must be in range 1..16')
-            elif self.alias in ['pb', 'spp']:
-                # PitchBend and SongPosition have the same value range.
-                if not 0 <= value <= PitchBend.max:
-                    raise ValueError(
-                        f'{name} must be in range 0..{PitchBend.max}')
-            elif self.alias == 'tc':
-                if name == 'type':
-                    if not 0 <= value <= 7:
-                        raise ValueError(
-                            'TimeCode type must be in range 0..7')
-                elif name == 'value':
-                    if not 0 <= value <= 15:
-                        raise ValueError(
-                            'TimeCode value must be in range 0..15')
             else:
-                if not 0 <= value <= 127:
-                    raise ValueError(f'{name} must be in range 0..127')
+                max_value = max_values.get((self.__class__.__name__, name), 127)
+                if not 0 <= value <= max_value:
+                    raise ValueError(f'{name} must be in range 0..{max_value}')
 
 
 @dataclass(frozen=True, eq=True)
