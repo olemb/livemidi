@@ -94,6 +94,7 @@ Current API (may change in the future):
   https://github.com/gbevin/SendMIDI and
   https://github.com/gbevin/ReceiveMIDI tools. (Also uses same naming
   conventions.)
+* type and value checking ensures that you always have a valid message.
 
 This is very experimental code. API details may change.
 
