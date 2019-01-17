@@ -2,7 +2,7 @@ from numbers import Integral
 from dataclasses import dataclass, replace
 
 
-max_values = {
+_max_values = {
     ('PitchBend', 'value'): 16383,
     ('SongPosition', 'beats'): 16383,
     ('TimeCode', 'type'): 7,
@@ -25,6 +25,7 @@ class MidiMsg:
         return isinstance(self, SystemExclusive)
 
     def __post_init__(self):
+        class_name = self.__class__.__name__
         # Type and value checks.
         for name, value in vars(self).items():
             if not isinstance(value, Integral):
@@ -33,7 +34,7 @@ class MidiMsg:
                 if not 1 <= value <= 16:
                     raise ValueError('ch must be in range 1..16')
             else:
-                max_value = max_values.get((self.__class__.__name__, name), 127)
+                max_value = _max_values.get((class_name, name), 127)
                 if not 0 <= value <= max_value:
                     raise ValueError(f'{name} must be in range 0..{max_value}')
 
