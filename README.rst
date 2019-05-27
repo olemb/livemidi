@@ -115,5 +115,8 @@ Open Questions
   hash(NoteOff(40))`` and ``hash(Start())`` == ``hash(Stop())``. This
   could be a problem.
 
+* Should ``create_input/output()`` be called
+  ``open_virtual_input/output()``?
+
 
 Author: Ole Martin Bjorndalen
