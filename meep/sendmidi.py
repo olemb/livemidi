@@ -59,7 +59,7 @@ def from_line(line):
         else:
             raise ValueError(f'unknown message: {line.strip()!r}')
 
-    
+
 def as_line(msg):
     if msg.is_syx():
         data = ' '.join(f'{byte:02x}' for byte in msg.data)
