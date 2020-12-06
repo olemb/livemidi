@@ -13,10 +13,6 @@ class MidiMsg:
     def __call__(self, *args, **kwargs):
         return replace(self, *args, **kwargs)
 
-    @property
-    def type(self):
-        return self.__class__.__name__
-
     def is_cc(self, number=None):
         if not isinstance(self, ControlChange):
             return False
