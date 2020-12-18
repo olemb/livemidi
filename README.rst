@@ -28,6 +28,15 @@ library. There may also be ideas here that could be reused in Mido.
     True
     >>> c.is_syx()
     False
+    >>> c.type
+    'ControlChange'
+    >>> c.alias
+    'cc'
+
+.. code-block:: python
+
+    >>> c.copy(value=0)
+    ControlChange(number=64, value=0)
 
 .. code-block:: python
 
@@ -63,7 +72,7 @@ Current API (may change in the future):
     meep.ChannelPressure(value=0, ch=1)
     meep.PitchBend(value=0, ch=1)
     meep.SystemExclusive(data=b'')
-    meep.TimeCode(type=0, value=0)
+    meep.TimeCode(frame_type=0, frame_value=0)
     meep.SongPosition(beats=0)
     meep.SongSelect(number=0)
     meep.TuneRequest()
@@ -106,9 +115,6 @@ Open Questions
 
 * What methods should the port classes have? What's a good minimal API that
   can be used equally well with async, threads and multiprocessing?
-
-* What's a good API for copying messages? ``replace(msg, note=20)``?
-  ``msg(note=20)``?  ``msg.copy(note=20)``?
 
 * The ``__hash__()`` method created by ``dataclasses`` ignores the
   message type, which means for example ``hash(NoteOn(40)) ==

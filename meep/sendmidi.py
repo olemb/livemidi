@@ -1,7 +1,7 @@
 import os
 import re
 import subprocess
-from .messages import get_class
+from .messages import get_class, SystemExclusive
 
 
 def dashname(camelname):
@@ -22,7 +22,7 @@ templates = {
     'ProgramChange': 'channel {ch} program-change {number}',
     'ChannelPressure': 'channel {ch} channel-pressure {value}',
     'PitchBend': 'channel {ch} pitch-bend {value}',
-    'TimeCode': 'time-code {type} {value}',
+    'TimeCode': 'time-code {frame_type} {frame_value}',
     'SongPosition': 'song-position {beats}',
     'SongSelect': 'song-select {number}',
     'TuneRequest': 'tune-request',

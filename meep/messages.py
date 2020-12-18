@@ -5,12 +5,16 @@ from dataclasses import dataclass, replace
 _max_values = {
     ('PitchBend', 'value'): 16383,
     ('SongPosition', 'beats'): 16383,
-    ('TimeCode', 'type'): 7,
-    ('TimeCode', 'value'): 15,
+    ('TimeCode', 'frame_type'): 7,
+    ('TimeCode', 'frame_value'): 15,
 }
 
 class MidiMsg:
-    def __call__(self, *args, **kwargs):
+    @property
+    def type(self):
+        return self.__class__.__name__
+
+    def copy(self, *args, **kwargs):
         return replace(self, *args, **kwargs)
 
     def is_cc(self, number=None):
@@ -108,8 +112,8 @@ class SystemExclusive(MidiMsg):
 
 @dataclass(frozen=True, eq=True)
 class TimeCode(MidiMsg):
-    type: Integral = 0
-    value: Integral = 0
+    frame_type: Integral = 0
+    frame_value: Integral = 0
     alias = 'tc'
 
 
