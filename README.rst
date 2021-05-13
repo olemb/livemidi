@@ -89,15 +89,5 @@ Current API (may change in the future):
     meep.open_output(name)
     meep.create_output(name)
 
-* requires Python 3.7.1 or later.
-* messages are implemented with Python data classes.
-* messages are always immutable. Great news for concurrency.
-* channels are 1-16.
-* integrates nicely with Geert Bevin's
-  https://github.com/gbevin/SendMIDI and
-  https://github.com/gbevin/ReceiveMIDI tools. (Also uses same naming
-  conventions.)
-* type and value checking ensures that you always have a valid message.
-
 
 Ole Martin Bjørndalen
