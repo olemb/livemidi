@@ -26,7 +26,7 @@ meep - MIDI messages for Python
     'ControlChange'
     >>> c.alias
     'cc'
-
+Author: Ole Martin Bjorndalen
 .. code-block:: python
 
     >>> c.copy(value=0)
@@ -98,25 +98,6 @@ Current API (may change in the future):
   https://github.com/gbevin/ReceiveMIDI tools. (Also uses same naming
   conventions.)
 * type and value checking ensures that you always have a valid message.
-
-This is very experimental code. API details may change.
-
-
-Open Questions
---------------
-
-* Where and how should type and value checking be done?
-
-* What methods should the port classes have? What's a good minimal API that
-  can be used equally well with async, threads and multiprocessing?
-
-* The ``__hash__()`` method created by ``dataclasses`` ignores the
-  message type, which means for example ``hash(NoteOn(40)) ==
-  hash(NoteOff(40))`` and ``hash(Start())`` == ``hash(Stop())``. This
-  could be a problem.
-
-* Should ``create_input/output()`` be called
-  ``open_virtual_input/output()``?
 
 
 Ole Martin Bjørndalen
