@@ -119,4 +119,4 @@ Open Questions
   ``open_virtual_input/output()``?
 
 
-Author: Ole Martin Bjorndalen
+Ole Martin Bjørndalen
