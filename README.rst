@@ -1,5 +1,5 @@
-meep - MIDI messages for Python
-===============================
+MIDI messages for Python
+========================
 
 .. code-block:: python
 
