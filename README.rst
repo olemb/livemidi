@@ -26,7 +26,7 @@ meep - MIDI messages for Python
     'ControlChange'
     >>> c.alias
     'cc'
-Author: Ole Martin Bjorndalen
+
 .. code-block:: python
 
     >>> c.copy(value=0)
