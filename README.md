@@ -1,4 +1,4 @@
-MIDI messages for Python
+MIDI Messages for Python
 
 ```python
 
