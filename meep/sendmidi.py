@@ -124,7 +124,6 @@ class Output:
                                       stdin=subprocess.PIPE)
 
     def send(self, msg):
-        print(msg)
         line = as_line(msg) + '\n'
         self._proc.stdin.write(line.encode('ascii'))
         self._proc.stdin.flush()
