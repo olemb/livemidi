@@ -64,7 +64,7 @@ def from_line(line):
 
 
 def as_line(msg):
-    if msg.is_syx():
+    if msg.type == 'SystemExclusive':
         data = ' '.join(f'{byte:02x}' for byte in msg.data)
         return f'system-exclusive hex {data} dec'
     else:
@@ -124,6 +124,7 @@ class Output:
                                       stdin=subprocess.PIPE)
 
     def send(self, msg):
+        print(msg)
         line = as_line(msg) + '\n'
         self._proc.stdin.write(line.encode('ascii'))
         self._proc.stdin.flush()

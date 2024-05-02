@@ -25,9 +25,6 @@ class MidiMsg:
         else:
             return self.number == number
 
-    def is_syx(self):
-        return isinstance(self, SystemExclusive)
-
     def __post_init__(self):
         class_name = self.__class__.__name__
         # Type and value checks.
