@@ -1,3 +1,6 @@
+"""
+Ports and utilities for Geert Bevin's SendMIDI and ReceiveMIDI programs.
+"""
 import os
 import re
 import subprocess
