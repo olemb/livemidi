@@ -1,4 +1,4 @@
-from meep import open_input, open_output, ProgramChange
+from livemidi import open_input, open_output, ProgramChange
 
 gmsynth = open_output('GM')
 

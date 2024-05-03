@@ -7,7 +7,7 @@ import time
 import string
 import readline
 import threading
-from meep import open_output, NoteOn, NoteOff
+from livemid.sendmidi import open_output, NoteOn, NoteOff
 
 
 #drum_notes = {

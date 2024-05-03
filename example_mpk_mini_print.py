@@ -1,4 +1,4 @@
-from meep import open_input
+from livemidi.sendmidi import open_input
 
 for msg in open_input('MPK'):
     if msg.is_cc(1):
@@ -6,4 +6,4 @@ for msg in open_input('MPK'):
     elif msg.is_cc():
         print('Other knob:', msg)
     else:
-        print('Key?', msg)
+        print('Other message', msg)

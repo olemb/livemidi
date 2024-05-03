@@ -1,6 +1,6 @@
 import time
-from meep.messages import *
-from meep.sendmidi import open_output
+from livemidi.messages import *
+from livemidi.sendmidi import open_output
 
 out = open_output('GM')
 
