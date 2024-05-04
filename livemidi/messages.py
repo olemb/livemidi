@@ -1,5 +1,5 @@
 from numbers import Integral
-from dataclasses import dataclass, replace
+from dataclasses import dataclass
 
 
 _max_values = {
@@ -13,9 +13,6 @@ class MidiMsg:
     @property
     def type(self):
         return self.__class__.__name__
-
-    def copy(self, *args, **kwargs):
-        return replace(self, *args, **kwargs)
 
     def is_cc(self, number=None):
         if not isinstance(self, ControlChange):
