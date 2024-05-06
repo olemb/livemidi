@@ -1,5 +1,5 @@
 import time
-from livemidi.messages import *
+from livemidi.messages import NoteOn, NoteOff
 from livemidi.sendmidi import open_output
 
 out = open_output('GM')
