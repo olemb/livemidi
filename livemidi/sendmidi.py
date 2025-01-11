@@ -40,7 +40,7 @@ templates = {
 _dashnames = [dashname(name) for name in templates]
 
 
-def _parse_syx_line(line):
+def _from_syx_line(line):
     # Example: "system-exclusive hex 01 02 03 dec"
 
     data = [byte for byte in line.split() if len(byte) == 2]
@@ -49,7 +49,7 @@ def _parse_syx_line(line):
 
 def from_line(line):
     if 'system-exclusive' in line:
-        return _parse_syx_line(line)
+        return _from_syx_line(line)
     else:
         for name in _dashnames:
             if name in line:
