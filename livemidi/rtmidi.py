@@ -1,6 +1,7 @@
 """
 pip install python-rtmidi
 """
+import time
 import rtmidi
 from .bytes import as_bytes, from_bytes
 
@@ -50,6 +51,14 @@ class Input:
             self.rt.open_virtual_port(name)
         else:
             self.rt.open_port(_find_port(self.rt, name))
+
+    def __iter__(self):
+        while True:
+            msg = self.rt.get_message()
+            if msg is None:
+                time.sleep(0.001)
+            else:
+                yield from_bytes(msg[0])
 
 
 class Output:
