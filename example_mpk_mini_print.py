@@ -1,4 +1,4 @@
-from livemidi.sendmidi import open_input
+from livemidi.rtmidi import open_input
 
 for msg in open_input('MPK'):
     if msg.is_cc(1):
